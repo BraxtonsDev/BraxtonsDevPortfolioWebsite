@@ -5,8 +5,13 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'MainFont';
+  src: url('Baby Doll.ttf') format('truetype');
+}
+
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: MainFont, sans-serif;
   background: #121212;
   color: #e0e0e0;
   line-height: 1.6;
@@ -39,7 +44,7 @@ nav {
 .logo {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #e0e0e0;
+  color: #d0d0d0;
 }
 
 .nav-links {
@@ -61,9 +66,8 @@ nav {
   color: #f39c12;
 }
 
-/* About Section with Profile Picture */
 .about-section {
-  padding: 6rem 0 4rem;
+  padding: 8rem 0 6rem; /* Increased padding for more breathing room */
   background: #1a1a1a;
   text-align: center;
 }
@@ -73,33 +77,33 @@ nav {
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem; /* Increased spacing between elements */
 }
 
 .profile-pic {
-  flex: 0 0 200px;
+  flex: 0 0 250px; /* Increased size of profile picture */
 }
 
 .profile-pic img {
-  width: 200px;
-  height: 200px;
+  width: 250px; /* Larger image size */
+  height: 250px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #f39c12;
+  border: 6px solid #f39c12; /* Thicker border for more emphasis */
 }
 
 .about-text {
-  max-width: 600px;
+  max-width: 700px; /* Increased text width for better readability */
 }
 
 .about-text h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3rem; /* Larger headline */
+  margin-bottom: 1.5rem;
 }
 
 .about-text p {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.3rem; /* Larger paragraph text */
+  line-height: 2; /* Improved spacing between lines */
 }
 
 /* Section Titles */
