@@ -1,132 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="BraxtonsDev Portfolio" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BraxtonsDev</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- Favicon (update the path to your favicon) -->
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Braxton's Creative Space</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation Header -->
-  <header>
-    <nav>
-      <div class="logo">BraxtonsDev - In Development</div>
+  <!-- Animated Background Elements -->
+  <div class="bg-elements">
+    <div class="blob" style="width: 400px; height: 400px; top: -100px; left: -100px; animation: float 15s infinite ease-in-out;"></div>
+    <div class="blob" style="width: 600px; height: 600px; bottom: -150px; right: -150px; animation: float 20s infinite ease-in-out reverse;"></div>
+    <div class="blob" style="width: 300px; height: 300px; top: 50%; left: 30%; animation: float 12s infinite ease-in-out;"></div>
+  </div>
+
+  <!-- Personal Header -->
+  <header class="personal-header">
+    <div class="container header-container">
+      <div class="personal-brand">
+        <img src="assets/profile.jpg" alt="Braxton" class="avatar">
+        <div class="brand-text">
+          <h1>Braxton</h1>
+          <p>Creative Developer</p>
+        </div>
+      </div>
+      
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects-cover">Projects (WIP)</a></li>
+        <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="#projects"><i class="fas fa-gamepad"></i> Projects</a></li>
+        <li><a href="#guitar"><i class="fas fa-guitar"></i> Guitar</a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
       </ul>
-    </nav>
+      
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
   </header>
 
-  <!-- About Me Section with Profile Picture -->
-  <section id="about" class="about-section">
-    <div class="container about-container">
-      <div class="profile-pic">
-        <img src="assets/profile.jpg" alt="Profile Picture">
-      </div>
-      <div class="about-text">
-        <h2>About Me</h2>
-        <p>
-          My name is Braxton and I enjoy anything tech related. Below are projects I have made and encourage you to check out!
-        </p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Building digital worlds with <span>passion</span> and <span>creativity</span></h1>
+        <p class="subtitle">Game developer and computing science student.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fas fa-gamepad"></i> Explore My Work
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <i class="fas fa-paper-plane"></i> Say Hello
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Cover Section -->
-  <section id="projects-cover" class="projects-cover">
+  <!-- About Section -->
+  <section id="about" class="about">
     <div class="container">
-      <h2 class="section-title">My Projects (WIP)</h2>
-      <div class="projects-grid">
-        <!-- Project Card 1 -->
-        <a href="#project1" class="project-card" style="background-image: url('assets/project1.jpg');">
-          <div class="shine"></div>
-          <div class="overlay"></div>
-          <div class="card-content">
-            <h3>Radiation Hazard</h3>
-            <p>Explore a dangerous power plant with your friends!.</p>
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <div class="intro-card">
+            <p>Hi! I'm Braxton, a current University Student In 'British Columbia, Canada' looking to learn as much as possible about the world of tech</p>
+            <p>I'm passionate about game development, arduino, and much more!</p>
           </div>
-        </a>
-        <!-- Project Card 2 -->
-        <a href="#project2" class="project-card" style="background-image: url('assets/project2.jpg');">
-          <div class="shine"></div>
-          <div class="overlay"></div>
-          <div class="card-content">
-            <h3>Minecraft AutoRod Mod</h3>
-            <p>Too lazy to fish all day long, well now your rod can for you!.</p>
+          
+          <div class="skills-section">
+            <h3>My Creative Toolkit</h3>
+            <div class="skills-grid">
+              <div class="skill-category">
+                <h4><i class="fas fa-gamepad"></i>Computing Science</h4>
+                <ul>
+                  <li>Unity Engine</li>
+                  <li>Godot</li>
+                  <li>Arduino</li>
+                  <li>Java Programming</li>
+                </ul>
+              </div>
+              <div class="skill-category">
+                <h4><i class="fas fa-music"></i>Hobbies</h4>
+                <ul>
+                  <li>Guitar</li>
+                  <li>Gaming</li>
+                  <li>Hiking</li>
+                  <li>Arduino</li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </a>
-        <!-- Project Card 3 -->
-        <a href="#project3" class="project-card" style="background-image: url('assets/project3.jpg');">
-          <div class="shine"></div>
-          <div class="overlay"></div>
-          <div class="card-content">
-            <h3>Crop Hunt</h3>
-            <p>Try to escape a corn maze while trapped with a monster.</p>
+        </div>
+        
+        <div class="about-image">
+          <div class="image-frame">
+            <img src="assets/Me.JPG" alt="Braxton">
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <div class="projects-header">
+        <h2>My Projects</h2>
+        <p>A collection of my creations</p>
+      </div>
+      
+      <div class="projects-container">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="assets/RadiationHazardLogo_1_-removebg-preview_1_-removebg-preview.png" alt="Radiation Hazard">
+            <span class="project-category">Game Put On Hold</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Radiation Hazard</h3>
+            <p class="project-description">A cooperative survival game set in a dangerous power plant with procedurally generated hazards and resource management.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Unity</span>
+              <span class="tech-tag">C#</span>
+              <span class="tech-tag">Multiplayer</span>
+              <span class="tech-tag">Horror</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://store.steampowered.com/app/3027300/Radiation_Hazard/" target="_blank" class="project-link primary">
+                <i class="fab fa-steam"></i> Steam
+              </a> 
+              <a href="#project-details" class="project-link secondary" data-project="radiation-hazard">
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="assets/TempLogo.JPG" alt="Boba Bandit">
+            <span class="project-category">Main Game Project</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Boba Bandit</h3>
+            <p class="project-description">Play as a Boba Tea shop owner who must deliver boba to Bandit City while avoiding obstacles and collecting ingredients.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Unity</span>
+              <span class="tech-tag">C#</span>
+              <span class="tech-tag">Cozy</span>
+              <span class="tech-tag">Adventure</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://store.steampowered.com/" target="_blank" class="project-link primary">
+                <i class="fab fa-gamepad"></i> Play
+              </a>
+              <a href="#project-details" class="project-link secondary" data-project="boba-bandit">
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="assets/IMG_2432.jpg" alt="Plant Bot">
+            <span class="project-category">Bot</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Plant Bot</h3>
+            <p class="project-description">A little farmer bot that tends and cares for my plant! Monitors soil moisture and will soon water plants automatically.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Arduino</span>
+              <span class="tech-tag">Nature</span>
+              <span class="tech-tag">Cute</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://youtube.com" target="_blank" class="project-link primary">
+                <i class="fab fa-youtube"></i> Watch
+              </a>
+              <a href="#project-details" class="project-link secondary" data-project="plant-bot">
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="assets/project3.jpg" alt="Crop Hunt">
+            <span class="project-category">Jam Game</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Crop Hunt</h3>
+            <p class="project-description">A short horror experience set in an corn maze with a relentless pursuer.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Unity</span>
+              <span class="tech-tag">Horror</span>
+              <span class="tech-tag">Game Jam</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://itch.io" target="_blank" class="project-link primary">
+                <i class="fab fa-gamepad"></i> Play
+              </a>
+              <a href="#project-details" class="project-link secondary" data-project="crop-hunt">
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="assets/IconFM.png" alt="Fan Mail">
+            <span class="project-category">Uni Game</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Fan Mail</h3>
+            <p class="project-description">A game where you play as a talk show host! However, something is eating at the host...</p>
+            <div class="project-tech">
+              <span class="tech-tag">Unity</span>
+              <span class="tech-tag">University Project</span>
+              <span class="tech-tag">Horror</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://itch.io" target="_blank" class="project-link primary">
+                <i class="fab fa-gamepad"></i> Play
+              </a>
+              <a href="#project-details" class="project-link secondary" data-project="fan-mail">
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guitar Section -->
+  <section id="guitar" class="guitar-section">
+    <div class="container">
+      <h2>Mini Virtual Guitar</h2>
+      <p class="subtitle">Click frets to place fingers, then strum</p>
+      
+      <div class="guitar-container">
+        <div class="guitar-neck">
+          <div class="guitar-strings">
+            <div class="string" data-string="0"></div>
+            <div class="string" data-string="1"></div>
+            <div class="string" data-string="2"></div>
+            <div class="string" data-string="3"></div>
+            <div class="string" data-string="4"></div>
+            <div class="string" data-string="5"></div>
+          </div>
+          
+          <div class="guitar-frets">
+            <div class="fret" data-fret="0"></div>
+            <div class="fret" data-fret="1"></div>
+            <div class="fret" data-fret="2"></div>
+            <div class="fret" data-fret="3"></div>
+            <div class="fret" data-fret="4"></div>
+          </div>
+          
+          <div class="fret-markers"></div>
+        </div>
+        
+        <div class="guitar-controls">
+          <div class="instructions">
+            
+          </div>
+          
+          <div class="strum-area">
+            <div class="strum-strings">
+              <div class="strum-string"></div>
+              <div class="strum-string"></div>
+              <div class="strum-string"></div>
+              <div class="strum-string"></div>
+              <div class="strum-string"></div>
+              <div class="strum-string"></div>
+            </div>
+            <p>Click or drag to strum</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="contact-container">
+        <h2>Let's Connect</h2>
+        <p class="subtitle">Ask me a question or even collab *Currently email is a placeholder :)*</p>
+        
+        <a href="mailto:hello@braxtonsdev.com" class="contact-email">
+          <i class="fas fa-envelope"></i> hello@braxtonsdev.com
         </a>
+        
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Itch.io">
+            <i class="fab fa-itch-io"></i>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Project Detail Sections -->
-
-  <!-- Project One Detail -->
-  <section id="project1" class="project-detail">
+  <!-- Footer -->
+  <footer>
     <div class="container">
-      <h2>Radiation Hazard - Steam game</h2>
-      <p>
-        Navigate your way through dangerous traps and creatures to make your wage for the month, will you and your frineds survive?.
-      </p>
-      <div class="gallery">
-        <img src="assets/photo1.jpg" alt="Radiation Hazard Pic 1" class="gallery-item">
-        <img src="assets/photo1-2.jpg" alt="Radiation Hazard Pic 2" class="gallery-item">
-        <img src="assets/photo1-3.jpg" alt="Radiation Hazard Pic 3" class="gallery-item">
+      <div class="footer-logo">
+        <div class="logo-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <span>Braxton's Creative Space</span>
       </div>
-      <a href="https://store.steampowered.com/app/3027300/Radiation_Hazard/" class="project-link" target="_blank">Store page!</a>
-    </div>
-  </section>
-
-  <!-- Project Two Detail -->
-  <section id="project2" class="project-detail">
-    <div class="container">
-      <h2>The AutoRod - Minecraft Mod</h2>
-      <p>
-        Too lazy to fish all day long, well now your rod can for you! 
-      </p>
-      <div class="gallery">
-        <img src="assets/photo2.jpg" alt="Mod pic 1" class="gallery-item">
-        <img src="assets/photo2-2.jpg" alt="Mod pic 2" class="gallery-item">
-        <img src="assets/photo2-3.jpg" alt="Mod pic 3" class="gallery-item">
+      
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#guitar">Guitar</a>
+        <a href="#contact">Contact</a>
       </div>
-      <a href="https://legacy.curseforge.com/minecraft/mc-mods/autorod" class="project-link" target="_blank">Mod page!</a>
-    </div>
-  </section>
-
-  <!-- Project Three Detail -->
-  <section id="project3" class="project-detail">
-    <div class="container">
-      <h2>Crop Hunt - Free Horror Game</h2>
-      <p>
-        Your car has crashed due to unforeseen circumstances. Can you escape the deadly corn fields?
+      
+      <p class="copyright">
+        &copy; <span id="current-year"></span> All rights reserved :)
       </p>
-      <div class="gallery">
-        <img src="assets/photo3.jpg" alt="Crop Hunt Pic 1" class="gallery-item">
-        <img src="assets/photo3-2.jpg" alt="Crop Hunt Pic 2" class="gallery-item">
-        <img src="assets/photo3-3.jpg" alt="Crop Hunt Pic 3" class="gallery-item">
-      </div>
-      <a href="https://braxtonsdev.itch.io/crop-hunt" class="project-link" target="_blank">Game page!</a>
     </div>
-  </section>
+  </footer>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox-modal" class="lightbox-modal">
-    <span class="close">&times;</span>
-    <img class="lightbox-content" id="lightbox-image">
-    <div class="caption" id="lightbox-caption"></div>
+  <!-- Project Details Modal -->
+  <div id="project-details" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2 class="modal-title"></h2>
+      
+      <div class="modal-gallery">
+        <div class="gallery-main">
+          <img id="main-gallery-image" src="" alt="">
+        </div>
+        <div class="gallery-thumbnails"></div>
+      </div>
+      
+      <div class="modal-description">
+        <p class="project-full-description"></p>
+        <ul class="details-list"></ul>
+        
+        <div class="video-container"></div>
+        
+        <h3>Development Logs</h3>
+        <div class="dev-log-entries"></div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
