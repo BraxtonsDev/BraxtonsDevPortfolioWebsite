@@ -211,6 +211,7 @@ section {
   cursor: pointer;
   border: none;
   gap: 0.5rem;
+  text-decoration: none;
 }
 
 .btn-primary {
@@ -471,6 +472,13 @@ section {
   border-radius: var(--radius-sm);
   font-weight: 500;
   transition: var(--transition);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .project-link.primary {
@@ -492,166 +500,14 @@ section {
   background-color: var(--latte);
 }
 
-/* Replace all existing guitar-related CSS with this: */
-.guitar-section {
-  background-color: var(--latte);
-  padding: 6rem 0;
+.project-link:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.guitar-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.guitar-neck {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  background: linear-gradient(to bottom, #8B4513, #A0522D);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-md);
-  padding: 20px;
-  overflow: hidden;
-}
-
-.guitar-strings {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 0 20px;
-  z-index: 1;
-}
-
-.string {
-  height: 2px;
-  background: linear-gradient(to right, 
-    rgba(255,255,255,0.3) 0%, 
-    rgba(255,255,255,0.8) 50%, 
-    rgba(255,255,255,0.3) 100%);
-  position: relative;
-  z-index: 1;
-  transition: transform 0.1s ease;
-}
-
-.string.strummed {
-  transform: scaleY(2);
-  background: white;
-}
-
-.guitar-frets {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  z-index: 2;
-}
-
-.fret {
-  flex: 1;
-  border-right: 2px solid rgba(0, 0, 0, 0.5);
-  position: relative;
-}
-
-.fret:last-child {
-  border-right: none;
-}
-
-.fret-marker {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.project-link:disabled:hover {
   background-color: var(--caramel);
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  font-size: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.fret-marker:hover {
-  background-color: var(--honey);
-}
-
-.instructions {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: var(--espresso);
-}
-
-.instructions p {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
-}
-
-.strum-area {
-  width: 100%;
-  height: 140px;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius-md);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-  padding: 20px;
-}
-
-.strum-area:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-.strum-strings {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 20px 0;
-}
-
-.strum-string {
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.3);
-  width: 100%;
-  transition: transform 0.1s ease;
-}
-
-.strum-string.strummed {
-  transform: scaleY(3);
-  background-color: white;
-}
-
-.strum-area p {
-  color: var(--espresso);
-  font-size: 0.9rem;
-  text-align: center;
-  z-index: 1;
-  pointer-events: none;
+  transform: none;
 }
 
 /* Contact Section */
@@ -672,6 +528,7 @@ section {
   color: var(--caramel);
   font-weight: 500;
   transition: var(--transition);
+  text-decoration: none;
 }
 
 .contact-email:hover {
@@ -696,6 +553,7 @@ section {
   color: var(--espresso);
   transition: var(--transition);
   font-size: 1.25rem;
+  text-decoration: none;
 }
 
 .social-link:hover {
@@ -743,6 +601,7 @@ footer {
 .footer-links a {
   color: white;
   transition: var(--transition);
+  text-decoration: none;
 }
 
 .footer-links a:hover {
@@ -981,19 +840,6 @@ footer {
     display: block;
   }
 
-  .guitar-neck {
-    height: 180px;
-  }
-
-  .chord-buttons {
-    flex-direction: column; 
-    align-items: center;
-  }
-
-  .chord-btn {
-    width: 100%;
-  }
-
   .modal-content {
     width: 90%;
     padding: 1.5rem;
@@ -1039,5 +885,15 @@ footer {
 
   .video-container iframe {
     height: 200px;
+  }
+}
+
+/* Animation for blobs */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, 10px);
   }
 }

@@ -35,184 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Guitar functionality
-  function setupGuitar() {
-    // Standard guitar tuning frequencies (E2, A2, D3, G3, B3, E4)
-    const stringFrequencies = [82.41, 110.00, 146.83, 196.00, 246.94, 329.63];
-    const fretCount = 5;
-    const activeMarkers = {};
-    
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const guitarNeck = document.querySelector('.guitar-neck');
-    const strings = document.querySelectorAll('.string');
-    const strumArea = document.querySelector('.strum-area');
-    const strumStrings = document.querySelectorAll('.strum-string');
-    
-    // Create clickable fret positions
-    document.querySelectorAll('.fret').forEach((fret, fretIndex) => {
-      strings.forEach((string, stringIndex) => {
-        const markerKey = `${stringIndex}-${fretIndex}`;
-        
-        fret.addEventListener('click', (e) => {
-          const rect = fret.getBoundingClientRect();
-          const stringRect = string.getBoundingClientRect();
-          const clickX = e.clientX - rect.left;
-          const clickY = e.clientY - stringRect.top;
-          
-          // Only register clicks near the string
-          if (Math.abs(clickY - stringRect.height/2) < 20) {
-            toggleMarker(stringIndex, fretIndex, rect, stringRect);
-          }
-        });
-      });
-    });
-  
-    function toggleMarker(stringIndex, fretIndex, fretRect, stringRect) {
-      const markerKey = `${stringIndex}-${fretIndex}`;
-      const existingMarker = guitarNeck.querySelector(`[data-marker="${markerKey}"]`);
-      
-      if (existingMarker) {
-        guitarNeck.removeChild(existingMarker);
-        delete activeMarkers[markerKey];
-      } else {
-        createMarker(stringIndex, fretIndex, fretRect, stringRect);
-      }
-    }
-  
-    function createMarker(stringIndex, fretIndex, fretRect, stringRect) {
-      const markerKey = `${stringIndex}-${fretIndex}`;
-      const marker = document.createElement('div');
-      marker.className = 'fret-marker';
-      marker.dataset.marker = markerKey;
-      
-      // Position marker
-      marker.style.left = `${fretRect.left + fretRect.width/2 - guitarNeck.getBoundingClientRect().left}px`;
-      marker.style.top = `${stringRect.top + stringRect.height/2 - guitarNeck.getBoundingClientRect().top}px`;
-      
-      // Add note label
-      marker.textContent = getNoteName(stringIndex, fretIndex);
-      
-      // Click to remove
-      marker.addEventListener('click', (e) => {
-        e.stopPropagation();
-        guitarNeck.removeChild(marker);
-        delete activeMarkers[markerKey];
-      });
-      
-      guitarNeck.appendChild(marker);
-      activeMarkers[markerKey] = true;
-    }
-  
-    // Strumming functionality
-    let isStrumming = false;
-    
-    strumArea.addEventListener('mousedown', startStrum);
-    strumArea.addEventListener('mouseup', playCurrentNotes);
-    strumArea.addEventListener('mouseleave', cancelStrum);
-    strumArea.addEventListener('touchstart', startStrum);
-    strumArea.addEventListener('touchend', playCurrentNotes);
-  
-    function startStrum(e) {
-      e.preventDefault();
-      isStrumming = true;
-      strumArea.classList.add('strumming');
-    }
-  
-    function cancelStrum() {
-      isStrumming = false;
-      strumArea.classList.remove('strumming');
-    }
-  
-    function playCurrentNotes(e) {
-      if (e) e.preventDefault();
-      if (!isStrumming) return;
-      
-      cancelStrum();
-      
-      // Play each string from lowest to highest
-      for (let i = 5; i >= 0; i--) {
-        setTimeout(() => {
-          playString(i);
-        }, (5 - i) * 75);
-      }
-    }
-  
-    function playString(stringIndex) {
-      let fret = 0;
-      for (const key in activeMarkers) {
-        const [s, f] = key.split('-').map(Number);
-        if (s === stringIndex) {
-          fret = f + 1;
-          break;
-        }
-      }
-    
-      const baseFreq = stringFrequencies[stringIndex];
-      const frequency = baseFreq * Math.pow(2, fret/12);
-      
-      // Create audio nodes
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      
-      // Use triangle wave for pleasant but clear tone
-      oscillator.type = 'triangle';
-      
-      // String-specific volume scaling (higher strings louder)
-      const volumes = [0.4, 0.45, 0.5, 0.55, 0.6, 0.7]; // EADGBE
-      
-      // Set envelope
-      const now = audioContext.currentTime;
-      gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(volumes[stringIndex], now + 0.01);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
-      
-      // Connect and play
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      
-      oscillator.frequency.value = frequency;
-      oscillator.start();
-      oscillator.stop(now + 1.2);
-    
-      // Visual feedback
-      strings[stringIndex].classList.add('strummed');
-      strumStrings[stringIndex].classList.add('strummed');
-      
-      setTimeout(() => {
-        strings[stringIndex].classList.remove('strummed');
-        strumStrings[stringIndex].classList.remove('strummed');
-      }, 150);
-    }
-
-    function playNote(frequency) {
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      
-      oscillator.type = 'sine';
-      oscillator.frequency.value = frequency;
-      
-      // Guitar-like envelope
-      const now = audioContext.currentTime;
-      gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      
-      oscillator.start();
-      oscillator.stop(now + 1.5);
-    }
-  
-    function getNoteName(stringIndex, fretIndex) {
-      const notes = ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'];
-      const openNotes = ['E', 'A', 'D', 'G', 'B', 'E'];
-      const openNote = openNotes[stringIndex];
-      const openIndex = notes.indexOf(openNote);
-      return notes[(openIndex + fretIndex + 1) % 12];
-    }
-  }
-
   // Project details modal functionality
   function setupProjectModals() {
     const modal = document.getElementById('project-details');
@@ -238,19 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Dev Trailer',
             url: 'https://www.youtube.com/embed/2iEj8oKcJDE'
           }
-        ]
-      },
-      'boba-bandit': {
-        title: 'Boba Bandit',
-        description: 'A cute and cozy game where you play as a boba tea shop owner who must deliver drinks to customers while avoiding obstacles and collecting ingredients.',
-        images: [
-          'assets/TempLogo.JPG'
-        ],
-        details: [
-          'Platform: Windows, Mac',
-          'Engine: Unity',
-          'Team Size: 2 person project',
-          'Key Features: Cozy Gameplay, Adventure, Shop Customization'
         ]
       },
       'plant-bot': {
@@ -287,21 +96,10 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'https://www.youtube.com/embed/2zTMPIKRx50'
           }
         ]
-      },
-      'fan-mail': {
-        title: 'Fan Mail',
-        description: 'A short horror experience made for my Intro to Creative Writing Class.',
-        images: [
-          'assets/IconFM.png'
-        ],
-        details: [
-          'Platform: Windows',
-          'Engine: Unity',
-          'Playtime: 8 Minutes'
-        ]
       }
     };
 
+    // Add event listeners to all detail buttons
     document.querySelectorAll('.project-link.secondary').forEach(button => {
       button.addEventListener('click', function(e) {
         e.preventDefault();
@@ -427,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Initialize functionality
-  setupGuitar();
   setupProjectModals();
 
   // Background animation
@@ -449,4 +246,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (document.querySelector('.blob')) {
     animateBlobs();
   }
+
+  // Add event listeners for disabled buttons to prevent default behavior
+  document.querySelectorAll('.project-link:disabled').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  });
 });
